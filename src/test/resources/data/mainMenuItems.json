@@ -1,0 +1,39 @@
+{
+  "ru": [
+    {
+      "itemName": "Вопросы и ответы",
+      "pageTitle": "Вопросы и ответы",
+      "pageUrl": "/faq/"
+    },
+    {
+      "itemName": "Кредит",
+      "pageTitle": "Покупка в кредит",
+      "pageUrl": "/credit/"
+    },
+    {
+      "itemName": "Доставка и оплата",
+      "pageTitle": "Доставка и оплата",
+      "pageUrl": "/payments-and-deliveries/"
+    },
+    {
+      "itemName": "Гарантия",
+      "pageTitle": "Гарантия и сервисное обслуживание",
+      "pageUrl": "/warranty/"
+    },
+    {
+      "itemName": "Контакты",
+      "pageTitle": "Консультации и заказ по телефонам",
+      "pageUrl": "/contacts/"
+    },
+    {
+      "itemName": "Отследить заказ",
+      "pageTitle": "Вход в интернет-магазин",
+      "pageUrl": ""
+    },
+    {
+      "itemName": "Продавать на Розетке",
+      "pageTitle": "Начните продавать Ваши товары на Розетке уже сегодня!",
+      "pageUrl": "/newseller/"
+    }
+  ]
+}
