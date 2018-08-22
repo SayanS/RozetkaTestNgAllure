@@ -1,18 +1,22 @@
 package rozetka.tests;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 import rozetka.pages.HomePage;
 import rozetka.utils.CustomTestListener;
 import rozetka.utils.FilesUtils;
 
 
-//@Test(groups = {"new", "all"})
+@Test(groups = {"run"})
 @Listeners({CustomTestListener.class})
 public class BaseTests {
     private WebDriver webDriver;
@@ -46,12 +50,31 @@ public class BaseTests {
                 break;
             }
         }
+
     }
 
-    public HomePage openHomePage(){
-        HomePage homePage=new HomePage(webDriver);
+    @BeforeMethod
+    public void setWebDriver(ITestContext context){
+        context.setAttribute("driverKey", webDriver);
+    }
+
+    @Step
+    public HomePage openHomePage() {
+        HomePage homePage = new HomePage(webDriver);
         homePage.open();
         return homePage;
     }
+
+//    @Attachment(value = "{0}", type = "text/plain")
+//    public String saveTextLog(String expectedCatalogItemName, String actualCatalogItemName) {
+//        return actualCatalogItemName;
+//    }
+//
+//    @Attachment(value = "screenshot for {0}", type = "image/png")
+//    public byte[] createScreenShot(String methodName) throws IOException {
+//        return ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+//    }
+
+
 //    clean test site -Drun.browser=chrome -Dbase.url=https://eldorado.ua/ -DsuiteXml=eldoradoTestng.xml
 }

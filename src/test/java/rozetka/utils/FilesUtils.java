@@ -44,6 +44,9 @@ public final class FilesUtils {
         return null;
     }
 
+    public static String getBaseUrl(){
+        return FilesUtils.getConfigProperty("baseUrl")+"."+FilesUtils.getConfigProperty("localization");
+    }
 
 }
 
