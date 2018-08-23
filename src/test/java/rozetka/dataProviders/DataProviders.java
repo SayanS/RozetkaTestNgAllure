@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class DataProviders {
 
-    @DataProvider
+    @DataProvider(name="headerMenuItems")
     public static Object[][] headerMenuItems() {
         Object[][] headerMenuExpectedResults;
         ObjectMapper mapper = new ObjectMapper();

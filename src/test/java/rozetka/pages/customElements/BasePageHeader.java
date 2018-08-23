@@ -10,16 +10,19 @@ import rozetka.pages.FaqPage;
 
 import java.util.List;
 
-public class Header extends BasePage {
+public class BasePageHeader extends BasePage {
     private WebDriver webDriver;
 
-    public Header(WebDriver webDriver) {
+    public BasePageHeader(WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
     }
 
     @FindBy(how = How.XPATH, using = "//ul[@name='header-top-menu']/li/a")
     private List<WebElement> menuItems;
+
+    @FindBy(id = "status_orders")
+    protected WebElement menuItemOrderTraking;
 
     @Step
     public <T extends BasePage> T selectMenuItem(String itemName) {

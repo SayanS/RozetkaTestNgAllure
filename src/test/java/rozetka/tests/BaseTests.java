@@ -10,13 +10,12 @@ import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
 import rozetka.pages.HomePage;
 import rozetka.utils.CustomTestListener;
 import rozetka.utils.FilesUtils;
 
 
-@Test(groups = {"run"})
+//@Test(groups = {"run"})
 @Listeners({CustomTestListener.class})
 public class BaseTests {
     private WebDriver webDriver;
@@ -54,7 +53,7 @@ public class BaseTests {
     }
 
     @BeforeMethod
-    public void setWebDriver(ITestContext context){
+    public void saveWebDriver(ITestContext context){
         context.setAttribute("driverKey", webDriver);
     }
 
@@ -64,16 +63,6 @@ public class BaseTests {
         homePage.open();
         return homePage;
     }
-
-//    @Attachment(value = "{0}", type = "text/plain")
-//    public String saveTextLog(String expectedCatalogItemName, String actualCatalogItemName) {
-//        return actualCatalogItemName;
-//    }
-//
-//    @Attachment(value = "screenshot for {0}", type = "image/png")
-//    public byte[] createScreenShot(String methodName) throws IOException {
-//        return ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-//    }
 
 
 //    clean test site -Drun.browser=chrome -Dbase.url=https://eldorado.ua/ -DsuiteXml=eldoradoTestng.xml
