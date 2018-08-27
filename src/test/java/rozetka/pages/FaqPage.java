@@ -6,22 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.testng.Assert;
-import rozetka.pages.customElements.BasePageHeader;
+import rozetka.pages.customElements.PageHeader;
 import rozetka.utils.FilesUtils;
 
-public class FaqPage extends BasePage {
+public class FaqPage extends PageHeader {
     private WebDriver webDriver;
-    private BasePageHeader basePageHeader;
 
     public FaqPage(WebDriver webDriver) {
         super(webDriver);
         this.pageURL = FilesUtils.getBaseUrl() + "/faq/";
         this.webDriver = webDriver;
-        this.basePageHeader = new BasePageHeader(webDriver);
-    }
-
-    public BasePageHeader getBasePageHeader() {
-        return this.basePageHeader;
     }
 
     @FindBy(how = How.XPATH, using = "//h1")

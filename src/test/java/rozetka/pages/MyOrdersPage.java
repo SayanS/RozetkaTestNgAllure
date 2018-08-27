@@ -1,8 +1,9 @@
-package rozetka.pages.profilepages;
+package rozetka.pages;
 
 import org.openqa.selenium.WebDriver;
+import rozetka.pages.customElements.PageHeader;
 
-public class MyOrdersPage extends BaseProfilePage {
+public class MyOrdersPage extends PageHeader {
     WebDriver webDriver;
     public MyOrdersPage(WebDriver webDriver){
         super(webDriver);
