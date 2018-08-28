@@ -48,5 +48,12 @@ public class DataProviders {
         return headerMenuExpectedResults;
     }
 
+    @DataProvider(name="invalidUserCredentials")
+    public static Object[][] invalidUserCredentials() {
+        return new Object[][]{{"invalidLogin","invalidPassword"},
+                              {"invalidLogin",""},
+                              {"","invalidPassword"}};
+    }
+
 
 }

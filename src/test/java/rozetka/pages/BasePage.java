@@ -109,10 +109,13 @@ public abstract class BasePage {
         actions.moveToElement(webElement).perform();
     }
 
-    protected String getAttribute(String xpath, String attribute) {
+   public String getAttribute(String xpath, String attribute) {
         return $(xpath).getAttribute(attribute);
     }
 
+    public String getCssAttribute(String xpath, String attribute) {
+        return $(xpath).getCssValue(attribute);
+    }
 
     protected void selectFromDropDownByValue(String xpath, String value) {
         Select select = new Select($(xpath));

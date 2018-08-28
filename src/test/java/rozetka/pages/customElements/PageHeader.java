@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.testng.Assert;
 import rozetka.pages.*;
-
-import java.util.List;
+import rozetka.pages.popups.AuthPopUp;
 
 public abstract class PageHeader extends BasePage {
     private WebDriver webDriver;
@@ -38,33 +38,8 @@ public abstract class PageHeader extends BasePage {
     @FindBy(how = How.XPATH, using = "(//ul[@name='header-top-menu']/li/a)[7]")
     private WebElement headerMenuItemNewSeller;
 
-
-
-    @FindBy(how = How.XPATH, using = "//ul[@name='header-top-menu']/li/a")
-    private List<WebElement> headerMenuItems;
-
-    @FindBy(id = "status_orders")
-    protected WebElement menuItemOrderTraking;
-
-    @Step
-    public <T extends BasePage> T selectMenuItem(String itemName) {
-        headerMenuItems.stream().filter(menuItem -> menuItem.getText().equals(itemName)).findFirst().orElse(null).click();
-        switch(itemName){
-            case "Вопросы и ответы":
-                return new FaqPage(webDriver);
-                break;
-            case "Кредит":break;
-            case "Доставка и оплата":break;
-            case "Гарантия":break;
-            case "Отследить заказ":break;
-            case "Контакты":break;
-            case "Продавать на Розетке":break;
-            default:return null;
-        }
-
-    }
-
-
+    @FindBy(how = How.XPATH, xpath = "//a[@name='signin']")
+    private WebElement headerUserTitle;
 
     @Step
     public FaqPage selectHeaderMenuItemFaq() {
@@ -97,9 +72,21 @@ public abstract class PageHeader extends BasePage {
     }
 
     @Step
-    public MyOrdersPage selectHeaderMenuOrderTracking() {
+    public AuthPopUp selectPreLoginHeaderMenuOrderTracking() {
+        headerMenuItemOrderTracking.click();
+        return new AuthPopUp(webDriver);
+    }
+
+    @Step
+    public MyOrdersPage selectPostLoginHeaderMenuOrderTracking() {
         headerMenuItemOrderTracking.click();
         return new MyOrdersPage(webDriver);
     }
+
+    @Step
+    public void ensureThatHeaderUserTitleIs(String expectedText) {
+        Assert.assertEquals(headerUserTitle.getText(), "войдите в личный кабинет");
+    }
+
 
 }

@@ -3,12 +3,8 @@ package rozetka.tests;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import rozetka.dataProviders.DataProviders;
-import rozetka.pages.BasePage;
 import rozetka.pages.HomePage;
 import rozetka.utils.CustomTestListener;
-
-import java.util.List;
-import java.util.Map;
 @Listeners({CustomTestListener.class})
 @Test(dataProviderClass = DataProviders.class)
 public class SmokeTests extends BaseTests{
@@ -20,20 +16,13 @@ public class SmokeTests extends BaseTests{
 //        faqPage.enssureThatTitleIs(headerMenuTestData.get("pageTitle"));
 //    }
 
-    @Test(dataProvider = "headerMenuTestDataForCurrentLocalization", enabled = true, groups = {"run"})
-    public void checkHeaderMenuLinks(List<Map<String, String>> headerMenuTestData){
-        for(int i=0; i<headerMenuTestData.size();i++) {
-            openHomePage().selectMenuItem(headerMenuTestData.get(i).get("itemName"));
-        }
-        }
-
-//        FaqPage faqPage=homePage.getPageHeader().selectMenuItem(headerMenuTestData.get("itemName"));
-//        faqPage.enssureThatTitleIs(headerMenuTestData.get("pageTitle"));
+    @Test(dataProvider = "invalidUserCredentials", enabled = true, groups = {"run"})
+    public void signInWithInvalidCredentials(String login, String password){
+        HomePage homePage=openHomePage();
+        homePage.selectPreLoginHeaderMenuOrderTracking()
+                .signInFailed(login,password).ensureThatTitleIs("Вход в интернет-магазин");
+        homePage.ensureThatHeaderUserTitleIs("войдите в личный кабинет");
     }
 
-//    @Test(enabled = true, groups = {"run"})
-//    public void checkLogInViaOrderTrackingItemOfHeaderMenu(){
-//        HomePage homePage=openHomePage();
-//        homePage.getPageHeader().se
-//    }
+
 }
