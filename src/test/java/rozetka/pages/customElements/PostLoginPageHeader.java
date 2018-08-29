@@ -7,12 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.testng.Assert;
 import rozetka.pages.*;
-import rozetka.pages.popups.AuthPopUp;
 
-public abstract class PageHeader extends BasePage {
+public class PostLoginPageHeader extends BasePage implements BasePageHeader {
     private WebDriver webDriver;
 
-    public PageHeader(WebDriver webDriver) {
+    public PostLoginPageHeader(WebDriver webDriver) {
         super(webDriver);
         this.webDriver = webDriver;
     }
@@ -39,54 +38,51 @@ public abstract class PageHeader extends BasePage {
     private WebElement headerMenuItemNewSeller;
 
     @FindBy(how = How.XPATH, xpath = "//a[@name='signin']")
-    private WebElement headerUserTitle;
+    private WebElement headerPostloginUserTitle;
+
 
     @Step
-    public FaqPage selectHeaderMenuItemFaq() {
+    public FaqPreLoginPage selectHeaderMenuItemFaq() {
         headerMenuItemFaq.click();
-        return new FaqPage(webDriver);
+        return new FaqPreLoginPage(webDriver);
     }
 
     @Step
-    public CreditPage selectHeaderMenuCredit() {
+    public CreditPreLoginPage selectHeaderMenuCredit() {
         headerMenuItemCredit.click();
-        return new CreditPage(webDriver);
+        return new CreditPreLoginPage(webDriver);
     }
 
     @Step
-    public DeliveriesAndPaymentsPage selectHeaderMenuDeliveriesAndPayments() {
+    public DeliveriesAndPaymentsPreLoginPage selectHeaderMenuDeliveriesAndPayments() {
         headerMenuItemDeliveriesAndPayments.click();
-        return new DeliveriesAndPaymentsPage(webDriver);
+        return new DeliveriesAndPaymentsPreLoginPage(webDriver);
     }
 
     @Step
-    public WarrantyPage selectHeaderMenuWarranty() {
+    public WarrantyPreLoginPage selectHeaderMenuWarranty() {
         headerMenuItemWarranty.click();
-        return new WarrantyPage(webDriver);
+        return new WarrantyPreLoginPage(webDriver);
     }
 
     @Step
-    public ContactsPage selectHeaderMenuContacts() {
+    public ContactsPreLoginPage selectHeaderMenuContacts() {
         headerMenuItemContacts.click();
-        return new ContactsPage(webDriver);
+        return new ContactsPreLoginPage(webDriver);
     }
 
     @Step
-    public AuthPopUp selectPreLoginHeaderMenuOrderTracking() {
-        headerMenuItemOrderTracking.click();
-        return new AuthPopUp(webDriver);
-    }
-
-    @Step
-    public MyOrdersPage selectPostLoginHeaderMenuOrderTracking() {
+    public MyOrdersPage selectHeaderMenuItemOrderTracking() {
         headerMenuItemOrderTracking.click();
         return new MyOrdersPage(webDriver);
     }
 
     @Step
-    public void ensureThatHeaderUserTitleIs(String expectedText) {
-        Assert.assertEquals(headerUserTitle.getText(), "войдите в личный кабинет");
+    public PostLoginPageHeader ensureThatPostloginHeaderUserTitleIs(String expectedText) {
+        Assert.assertEquals(headerPostloginUserTitle.getText(), expectedText);
+        return this;
     }
+
 
 
 }

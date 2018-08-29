@@ -1,12 +1,30 @@
 package rozetka.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import rozetka.pages.customElements.PageHeader;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.testng.Assert;
+import rozetka.pages.customElements.PostLoginPageHeader;
 
-public class MyOrdersPage extends PageHeader {
-    WebDriver webDriver;
-    public MyOrdersPage(WebDriver webDriver){
+public class MyOrdersPage extends BasePage {
+    private WebDriver webDriver;
+
+    public MyOrdersPage(WebDriver webDriver) {
         super(webDriver);
-        this.webDriver=webDriver;
+        this.webDriver = webDriver;
+        pageHeader =new PostLoginPageHeader(webDriver);
     }
+
+    @FindBy(how = How.XPATH, xpath = "//h1")
+    private WebElement title;
+
+    @Step
+    public MyOrdersPage ensureThatTitleIs(String expectedTitle) {
+        Assert.assertEquals(title.getText(), expectedTitle);
+        return this;
+    }
+
+
 }

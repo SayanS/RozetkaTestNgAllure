@@ -1,6 +1,7 @@
 package rozetka.pages;
 
 import com.google.common.base.Function;
+import io.qameta.allure.Step;
 import io.restassured.http.Cookies;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import rozetka.pages.customElements.BasePageHeader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.List;
 public abstract class BasePage {
     private WebDriver webDriver;
     protected String pageURL;
+    protected BasePageHeader pageHeader;
 
     public BasePage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -122,5 +126,15 @@ public abstract class BasePage {
         select.selectByValue(value);
     }
 
+    @Step
+    public BasePage ensureThatCurrentUrlIs(String expectedUrl){
+        Assert.assertEquals(webDriver.getCurrentUrl(),expectedUrl);
+        return this;
+    }
+
+    @Step
+    public BasePageHeader getPageHeader(){
+        return this.pageHeader;
+    }
 
 }

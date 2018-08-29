@@ -55,5 +55,10 @@ public class DataProviders {
                               {"","invalidPassword"}};
     }
 
+    @DataProvider(name="validUserCredentials")
+    public static Object[][] validUserCredentials() {
+        return new Object[][]{{"garmsayan@gmail.com","Ijdrjgkzc12r"}};
+    }
+
 
 }

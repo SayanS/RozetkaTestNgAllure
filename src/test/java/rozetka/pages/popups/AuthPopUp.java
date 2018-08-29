@@ -50,17 +50,17 @@ public class AuthPopUp extends BasePage {
     private WebElement title;
 
     @Step
-    public MyOrdersPage signInSuccessful(String validLogin, String validPassword){
-        loginField.sendKeys(validLogin);
-        passwordField.sendKeys(validPassword);
+    public MyOrdersPage signInWithValidCredentials(String login, String password){
+        loginField.sendKeys(login);
+        passwordField.sendKeys(password);
         submitButton.click();
         return new MyOrdersPage(webDriver);
     }
 
     @Step
-    public AuthPopUp signInFailed(String invalidLogin, String invalidPassword){
-        loginField.sendKeys(invalidLogin);
-        passwordField.sendKeys(invalidPassword);
+    public AuthPopUp signInWithInvalidCredentials(String login, String password){
+        loginField.sendKeys(login);
+        passwordField.sendKeys(password);
         submitButton.click();
         return this;
     }
@@ -71,7 +71,8 @@ public class AuthPopUp extends BasePage {
     }
 
     @Step
-    public void ensureThatTitleIs(String expectedTitle) {
+    public AuthPopUp ensureThatTitleIs(String expectedTitle) {
         Assert.assertEquals(getTitle(), expectedTitle);
+        return this;
     }
 }
