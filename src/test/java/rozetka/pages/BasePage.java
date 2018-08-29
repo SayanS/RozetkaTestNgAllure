@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import rozetka.pages.customElements.BasePageHeader;
+import rozetka.utils.FilesUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,14 +128,21 @@ public abstract class BasePage {
     }
 
     @Step
-    public BasePage ensureThatCurrentUrlIs(String expectedUrl){
-        Assert.assertEquals(webDriver.getCurrentUrl(),expectedUrl);
-        return this;
-    }
-
-    @Step
     public BasePageHeader getPageHeader(){
         return this.pageHeader;
     }
 
+    @Step
+    public void ensureThatCurrentUrlIsCorrect() {
+        waitFor(ExpectedConditions.urlToBe(pageURL),5);
+        Assert.assertEquals(webDriver.getCurrentUrl(),pageURL);
+    }
+
+    protected String getBaseUrlForCurrentLocalization(){
+        if(FilesUtils.getConfigProperty("localization").equals("ru")){
+            return FilesUtils.getConfigProperty("baseUrl");
+        }else {
+            return FilesUtils.getConfigProperty("baseUrl")+"/"+FilesUtils.getConfigProperty("localization");
+        }
+    }
 }

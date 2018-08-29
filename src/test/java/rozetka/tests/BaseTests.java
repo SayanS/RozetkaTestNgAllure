@@ -7,12 +7,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import rozetka.pages.HomePage;
 import rozetka.utils.CustomTestListener;
 import rozetka.utils.FilesUtils;
+
+import java.util.concurrent.TimeUnit;
 
 
 //@Test(groups = {"run"})
@@ -49,7 +52,14 @@ public class BaseTests {
                 break;
             }
         }
+        webDriver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+    }
 
+    @AfterClass
+    public void tearDown(){
+        if(webDriver!=null){
+            webDriver.close();
+        }
     }
 
     @BeforeMethod

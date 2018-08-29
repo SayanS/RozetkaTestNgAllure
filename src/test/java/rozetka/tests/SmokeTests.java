@@ -9,7 +9,6 @@ import rozetka.pages.customElements.PostLoginPageHeader;
 import rozetka.pages.customElements.PreLoginPageHeader;
 import rozetka.pages.popups.AuthPopUp;
 import rozetka.utils.CustomTestListener;
-import rozetka.utils.FilesUtils;
 
 @Listeners({CustomTestListener.class})
 @Test(dataProviderClass = DataProviders.class)
@@ -27,19 +26,20 @@ public class SmokeTests extends BaseTests {
         HomePage homePage = openHomePage();
         AuthPopUp authPopUp = homePage.getPageHeader().selectHeaderMenuItemOrderTracking();
         authPopUp.signInWithInvalidCredentials(login, password).ensureThatTitleIs("Вход в интернет-магазин");
+        homePage.ensureThatCurrentUrlIsCorrect();
         PreLoginPageHeader preLoginPageHeader = (PreLoginPageHeader) homePage.getPageHeader();
         preLoginPageHeader.ensureThatHeaderPreloginUserTitleIs("войдите в личный кабинет");
     }
 
     @Test(dataProvider = "validUserCredentials", enabled = true, groups = {"run"})
-    public void checkAbilityToSignIUnWithValidCredentials(String login, String password) {
+    public void checkAbilityToSignIUnWithValidCredentials(String login, String password, String userName) {
         AuthPopUp authPopUp = openHomePage().getPageHeader()
                 .selectHeaderMenuItemOrderTracking();
        MyOrdersPage myOrdersPage=authPopUp.signInWithValidCredentials(login, password);
-       myOrdersPage.ensureThatCurrentUrlIs(FilesUtils.getConfigProperty("baseUrl") + "/profile/account/#details");
+       myOrdersPage.ensureThatCurrentUrlIsCorrect();
        myOrdersPage.ensureThatTitleIs("Мои заказы");
        PostLoginPageHeader postLoginPageHeader= (PostLoginPageHeader) myOrdersPage.getPageHeader();
-       postLoginPageHeader.ensureThatPostloginHeaderUserTitleIs("pupkin");
+       postLoginPageHeader.ensureThatPostloginHeaderUserTitleIs(userName);
     }
 
 

@@ -37,7 +37,7 @@ public class PostLoginPageHeader extends BasePage implements BasePageHeader {
     @FindBy(how = How.XPATH, using = "(//ul[@name='header-top-menu']/li/a)[7]")
     private WebElement headerMenuItemNewSeller;
 
-    @FindBy(how = How.XPATH, xpath = "//a[@name='signin']")
+    @FindBy(how = How.XPATH, xpath = "//a[@name='profile']")
     private WebElement headerPostloginUserTitle;
 
 
