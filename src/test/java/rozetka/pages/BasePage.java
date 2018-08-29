@@ -140,7 +140,7 @@ public abstract class BasePage {
 
     protected String getBaseUrlForCurrentLocalization(){
         if(FilesUtils.getConfigProperty("localization").equals("ru")){
-            return FilesUtils.getConfigProperty("baseUrl");
+            return FilesUtils.getConfigProperty("baseUrl")+"/";
         }else {
             return FilesUtils.getConfigProperty("baseUrl")+"/"+FilesUtils.getConfigProperty("localization");
         }
