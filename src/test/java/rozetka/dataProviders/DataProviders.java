@@ -60,5 +60,4 @@ public class DataProviders {
         return new Object[][]{{"garmsayan@gmail.com","Rfhfylfitkm12r","Pupkin"}};
     }
 
-
 }
