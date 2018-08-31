@@ -36,7 +36,7 @@
     "lastString": "CCC"
   },
   {
-    "title": "Invoice",
+    "title": "---",
     "annotation": "AAA",
     "firstString": "BBB",
     "lastString": "---"
@@ -54,7 +54,7 @@
     "lastString": "CCC"
   },
   {
-    "title": "+++",
+    "title": "---",
     "annotation": "---",
     "firstString": "---",
     "lastString": "CCC"

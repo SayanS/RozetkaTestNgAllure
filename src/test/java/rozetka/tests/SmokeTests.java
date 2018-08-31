@@ -51,7 +51,8 @@ public class SmokeTests extends BaseTests {
     }
 
 
-    @Test(enabled = true, groups = {"run"})
+
+    @Test(enabled = true, groups = {"pending"})
     public void getThreeTheMostSimilarDocuments() {
         Map<String, Integer> resultRating = new HashMap<>();
         Integer currentRating=0;
@@ -63,7 +64,6 @@ public class SmokeTests extends BaseTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         for (int i = 0; i < docsFeatures.size(); i++) {
             for (int j = i + 1; j < docsFeatures.size(); j++) {

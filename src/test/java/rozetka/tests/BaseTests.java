@@ -44,6 +44,7 @@ public class BaseTests {
             case "FIREFOX": {
                 System.setProperty("webdriver.firefox.driver", FilesUtils.getConfigProperty("pathWebDriver"));
                 webDriver = new FirefoxDriver(firefoxOptions);
+                webDriver.manage().window().maximize();
                 break;
             }
             default: {
