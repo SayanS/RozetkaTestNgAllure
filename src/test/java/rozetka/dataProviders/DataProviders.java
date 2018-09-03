@@ -60,4 +60,9 @@ public class DataProviders {
         return new Object[][]{{"garmsayan@gmail.com","Rfhfylfitkm12r","Pupkin"}};
     }
 
+    @DataProvider(name="googleCredentials")
+    public static Object[][] googleCredentials() {
+        return new Object[][]{{"garmsayan@gmail.com","Ijdrjgkzc12r","Pupkin"}};
+    }
+
 }

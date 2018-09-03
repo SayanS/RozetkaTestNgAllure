@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.testng.Assert;
 import rozetka.pages.BasePage;
+import rozetka.pages.GoogleSignInPage;
 import rozetka.pages.MyOrdersPage;
 
 public class AuthPopUp extends BasePage {
@@ -74,5 +75,11 @@ public class AuthPopUp extends BasePage {
     public AuthPopUp ensureThatTitleIs(String expectedTitle) {
         Assert.assertEquals(getTitle(), expectedTitle);
         return this;
+    }
+
+    @Step
+    public GoogleSignInPage clickOnGoogleSignInButton(){
+        googleButton.click();
+        return new GoogleSignInPage(webDriver);
     }
 }

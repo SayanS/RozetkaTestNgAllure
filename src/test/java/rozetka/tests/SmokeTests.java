@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import rozetka.dataProviders.DataProviders;
+import rozetka.pages.GoogleSignInPage;
 import rozetka.pages.HomePage;
 import rozetka.pages.MyOrdersPage;
 import rozetka.pages.customElements.PostLoginPageHeader;
@@ -29,7 +30,7 @@ public class SmokeTests extends BaseTests {
 //        faqPage.enssureThatTitleIs(headerMenuTestData.get("pageTitle"));
 //    }
 
-    @Test(dataProvider = "invalidUserCredentials", enabled = true, groups = {"run"})
+    @Test(dataProvider = "invalidUserCredentials", groups = {"ignoring"})
     public void checkInabilityToSignInWithInvalidCredentials(String login, String password) {
         HomePage homePage = openHomePage();
         AuthPopUp authPopUp = homePage.getPageHeader().selectHeaderMenuItemOrderTracking();
@@ -39,7 +40,7 @@ public class SmokeTests extends BaseTests {
         preLoginPageHeader.ensureThatHeaderPreloginUserTitleIs("войдите в личный кабинет");
     }
 
-    @Test(dataProvider = "validUserCredentials", enabled = true, groups = {"run"})
+    @Test(dataProvider = "validUserCredentials", groups = {"ignoring"})
     public void checkAbilityToSignIUnWithValidCredentials(String login, String password, String userName) {
         AuthPopUp authPopUp = openHomePage().getPageHeader()
                 .selectHeaderMenuItemOrderTracking();
@@ -50,9 +51,18 @@ public class SmokeTests extends BaseTests {
         postLoginPageHeader.ensureThatPostloginHeaderUserTitleIs(userName);
     }
 
+    @Test(dataProvider = "googleCredentials", groups = {"run"})
+    public void checkAbilityToSignViaGoogleAccount(String login, String password, String userName) {
+        PreLoginPageHeader preLoginPageHeader = (PreLoginPageHeader)(openHomePage().getPageHeader());
+        AuthPopUp authPopUp=preLoginPageHeader.clickOnSignInButton();
+        GoogleSignInPage googleSignInPage=authPopUp.clickOnGoogleSignInButton();
+        googleSignInPage.ensureThatCurrentUrlIsCorrect();
+        googleSignInPage.enterValueInto(googleSignInPage.emailField,login);
+        int i=0;
 
+    }
 
-    @Test(enabled = true, groups = {"pending"})
+    @Test(groups = {"run"})
     public void getThreeTheMostSimilarDocuments() {
         Map<String, Integer> resultRating = new HashMap<>();
         Integer currentRating=0;

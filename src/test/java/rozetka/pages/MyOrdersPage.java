@@ -15,7 +15,7 @@ public class MyOrdersPage extends BasePage {
         super(webDriver);
         this.webDriver = webDriver;
         pageHeader =new PostLoginPageHeader(webDriver);
-        pageURL=getBaseUrlForCurrentLocalization().replace("://","://my.")+"/profile/account/#details";
+        pageURL=getBaseUrlForCurrentLocalization().replace("://","://my.")+"profile/account/#details";
     }
 
     @FindBy(how = How.XPATH, xpath = "//h1")

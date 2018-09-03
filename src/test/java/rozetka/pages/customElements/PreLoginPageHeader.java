@@ -42,6 +42,12 @@ public class PreLoginPageHeader extends BasePage implements BasePageHeader  {
     private WebElement headerPreloginUserTitle;
 
     @Step
+    public AuthPopUp clickOnSignInButton(){
+        headerPreloginUserTitle.click();
+        return new AuthPopUp(webDriver);
+    }
+
+    @Step
     public FaqPreLoginPage selectHeaderMenuItemFaq() {
         headerMenuItemFaq.click();
         return new FaqPreLoginPage(webDriver);

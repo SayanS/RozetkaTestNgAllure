@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="rozetkaTestNg">
+
+    <groups>
+        <run>
+            <include name="run"/>
+        </run>
+    </groups>
+
+    <test name="Smoke">
+        <groups>
+            <run>
+                <include name="run1"/>
+                <exclude name="ignoring"></exclude>
+            </run>
+        </groups>
+        <classes>
+            <class name="rozetka.tests.SmokeTests">
+            </class>
+        </classes>
+    </test>
+</suite>
+
+        <!--<test name="Allure Cart">-->
+        <!--<classes>-->
+        <!--<class name="CartPage"/>-->
+        <!--</classes>-->
+        <!--</test>-->

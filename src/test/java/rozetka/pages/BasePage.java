@@ -95,7 +95,7 @@ public abstract class BasePage {
         return (new WebDriverWait(webDriver, secTimeout)).until(condition);
     }
 
-    protected void sendKeys(String xpath, String value) {
+    public void enterValueInto(String xpath, String value) {
         waitFor(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)), 5);
         scrollIntoView(xpath);
         waitFor(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)), 3);
@@ -103,7 +103,7 @@ public abstract class BasePage {
         $(xpath).sendKeys(value);
     }
 
-    protected String switchToLustWindow() {
+    public String switchToLustWindow() {
         webDriver.getWindowHandles().forEach(wh -> webDriver
                 .switchTo().window(wh));
         return webDriver.getCurrentUrl();
@@ -134,6 +134,7 @@ public abstract class BasePage {
 
     @Step
     public void ensureThatCurrentUrlIsCorrect() {
+        switchToLustWindow();
         waitFor(ExpectedConditions.urlToBe(pageURL),5);
         Assert.assertEquals(webDriver.getCurrentUrl(),pageURL);
     }
