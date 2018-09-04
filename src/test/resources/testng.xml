@@ -21,10 +21,13 @@
             </class>
         </classes>
     </test>
+
+    <test name="Base Tests">
+        <classes>
+            <class name="rozetka.tests.BaseTests"/>
+        </classes>
+    </test>
+
 </suite>
 
-        <!--<test name="Allure Cart">-->
-        <!--<classes>-->
-        <!--<class name="CartPage"/>-->
-        <!--</classes>-->
-        <!--</test>-->
+
